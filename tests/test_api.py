@@ -5,6 +5,13 @@ from app.main import app
 client = TestClient(app)
 
 
+def test_root_serves_customer_ui() -> None:
+    response = client.get("/")
+
+    assert response.status_code == 200
+    assert "Grounded chat" in response.text
+
+
 def test_health_endpoint() -> None:
     response = client.get("/api/health")
 
@@ -23,6 +30,17 @@ def test_chat_returns_citations() -> None:
     assert payload["grounded"] is True
     assert payload["citations"]
     assert payload["provider"] == "demo"
+
+
+def test_knowledge_endpoint_returns_source_metadata() -> None:
+    response = client.get("/api/knowledge")
+
+    assert response.status_code == 200
+    assert {item["source"] for item in response.json()} == {
+        "azure-deployment.md",
+        "privacy.md",
+        "rag-basics.md",
+    }
 
 
 def test_chat_reports_missing_context() -> None:
