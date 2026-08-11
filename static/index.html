@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A small cited RAG chatbot demo.">
+    <title>RBT201 AI Chatbot</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">RBT201 / PUBLIC AI DEMO</p>
+        <h1>Ask the knowledge base.</h1>
+        <p class="lede">
+          A small retrieval-augmented chatbot that answers from curated
+          sources and shows the evidence behind its response.
+        </p>
+      </section>
+
+      <section class="panel" aria-labelledby="chat-heading">
+        <div class="panel-heading">
+          <div>
+            <h2 id="chat-heading">Grounded chat</h2>
+            <p id="status" class="status">Demo mode is ready.</p>
+          </div>
+          <span class="badge">Citations on</span>
+        </div>
+        <form id="chat-form">
+          <label for="question">Your question</label>
+          <textarea
+            id="question"
+            name="question"
+            rows="4"
+            maxlength="1000"
+            required
+            placeholder="What makes a RAG answer trustworthy?"
+          ></textarea>
+          <div class="form-actions">
+            <button type="submit">Ask the chatbot</button>
+            <button type="button" id="sample-question" class="secondary">
+              Try a sample
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section id="answer-panel" class="panel answer-panel" hidden>
+        <div class="panel-heading">
+          <h2>Answer</h2>
+          <span id="provider" class="badge"></span>
+        </div>
+        <p id="answer" class="answer"></p>
+        <h3>Supporting sources</h3>
+        <ul id="citations" class="citations"></ul>
+      </section>
+
+      <p class="notice">
+        Demo content is synthetic and educational. Do not submit confidential
+        information.
+      </p>
+    </main>
+    <script src="/assets/app.js" defer></script>
+  </body>
+</html>
